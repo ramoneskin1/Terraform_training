@@ -4,6 +4,6 @@ resource "aws_instance" "MyterraformInstance" {
 	instance_type   = "t3.micro"
 
 	tags = {
-		Name = "threedemoinstances"
+		Name = "demoinstances-${count.index}"
 	}
 }
