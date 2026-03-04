@@ -5,4 +5,6 @@ resource "aws_instance" "MyterraformInstance" {
 	tags = {
 		Name = "demoinstance"
 	}
+
+security_groups ="${var.Security_Group}"
 }
