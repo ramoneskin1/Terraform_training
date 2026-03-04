@@ -1,5 +1,5 @@
 resource "aws_instance" "MyterraformInstance" {
-	ami 			= "ami-05803413c51f242b7"
+	ami 			= lookup(var.AMIS, var.AWS_REGION)
 	instance_type   = "t3.micro"
 
 	tags = {
