@@ -22,9 +22,19 @@ resource "aws_instance" "MyInstance" {
   instance_type = t3.micro
   availability_zone = data.aws_availability_zones.available.names [1]
 
+  provisioner "local-exec" {
+    command = "echo aws_instance.MyInstance.private_ip >> my_private_ips.txt"
+}
+
   tags = {
     Name = "custom_instance"
   }
 
+  output "public_ip" {
+    value = aws_instance.MyInstance.public_ip
+  }
+
 }
+
+
  
