@@ -11,7 +11,8 @@ resource "aws_instance" "MyterraformInstance" {
 
 	vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]
 	subnet_id = aws_subnet.levelupvpc-public-2.id
-}
+
 	tag = {
 		Name = "my_custom_instance"
 	}
+}
