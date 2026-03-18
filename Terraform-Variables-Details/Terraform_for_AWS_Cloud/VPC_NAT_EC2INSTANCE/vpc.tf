@@ -79,7 +79,7 @@ resource "aws_subnet" "levelupvpc-private-3" {
 }
 
 # Custom Internet Gateway
-resource "aws_internet_gateway" "levelup-gw" {
+resource "aws_internet_gateway" "levelupvpc-gw" {
   vpc_id = aws_vpc.levelup_vpc.id
 
   tags = {
