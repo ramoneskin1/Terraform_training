@@ -9,27 +9,9 @@ resource "aws_instance" "MyterraformInstance" {
 	instance_type   = "t3.micro"
 	key_name = aws_key_pair.levelup_key.key_name
 
+	vpc_security_group_ids = [aws_security_group.allow-levelup-ssh.id]
+	subnet_id = aws_subnet.levelupvpc-public-2.id
+
 	tags = {
 		Name = "my_custom_instance"
 	}
-
-provisioner "file" {
-	source = "installNginx.sh"
-	destination = "/tmp/installNginx.sh"
-}
-
-provisioner "remote-exec" {
-	inline = [
-	"chmod +x /tmp/installNginx.sh",
-	"sudo sed -i -e 's/\r$//' /tmp/installNginx.sh", # Remove the spurious CR characters
-	"sudo /tmp/installNginx.sh",
- ]
-}
-
-connection {
-	host 		= coalesce(self.public_ip, self.private_ip)
-	type		= "ssh"
-	user		= var.INSTANCE_USERNAME
-	private_key = file(var.PATH_TO_PRIVATE_KEY)
- }
-}
