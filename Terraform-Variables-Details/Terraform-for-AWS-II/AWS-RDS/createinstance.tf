@@ -17,3 +17,6 @@ resource "aws_instance" "MyterraformInstance" {
 		Name = "my_custom_instance"
 	}
 }
+output "public_ip" {
+value = aws_instance.MyterraformInstance.public_ip
+}
