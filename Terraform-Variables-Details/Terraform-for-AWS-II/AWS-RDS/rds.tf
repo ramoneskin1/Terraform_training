@@ -40,6 +40,8 @@ resource "aws_db_instance" "levelup-mariadb" {
  }
 }
 
-
+output "rds" {
+  value = aws_db_instance.levelup-mariadb.endpoint
+}
 
 
